@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Details about {{ talk.topic }}
+{% endblock %}
+
+{% block content %}
+  <div class="mycard">
+    <h1 style="color: aliceblue;">{{ talk.topic }}</h1>
+    <p style="color: aliceblue;">context :{{ talk.Talk }}</p>
+    <p style="color: aliceblue;">Pose since: {{ talk.posted_date }}</p>
+  </div>
+  <br style="color: aliceblue;">
+
+{% endblock %}  

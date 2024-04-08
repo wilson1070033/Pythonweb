@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card mt-5">
+        <div class="card-header">Login</div>
+        <div class="card-body">
+            <form class="form" role="form" method="POST">
+                {% csrf_token %} <!--用於防止跨站偽造請求（CSRF）攻擊-->
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

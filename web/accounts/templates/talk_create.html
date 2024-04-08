@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 style="color: azure;">黑特發文區</h1>
+
+<form action="{% url 'talk_create' %}" method="post" >
+{% csrf_token %}
+
+<p>
+<label for="topic"  style="color: azure;">Topic：</label>
+<input type="text" name="topic" id="topic" class="form-control"/>
+</p>
+
+<p>
+<label for="email"  style="color: azure;">email：</label>
+<input type="text" name="email" id="email" class="form-control" value="example@example.com"/>
+</p>
+
+<p>
+<label for="Talk"  style="color: azure;">Context：</label>
+<textarea name="Talk" id="Talk" class="form-control"></textarea>
+</p>
+
+<button type="submit" onclick="processFormData()" class="form-control">Submit</button>
+
+</form>
+<script>
+    var nameElement = document.getElementById("topic");
+    var emailElement = document.getElementById("email");
+    var feedbackElement = document.getElementById("Talk");
+    function processFormData() {
+    const name = nameElement.value;
+    const email = emailElement.value;
+    alert("已向黑特南一中投稿標題為" + name + "的貼文");
+    }
+    function addMsg() {
+    // 獲取table標籤元素
+    let table = document.getElementById("Feedback_table");
+    // 建立新行
+    let newRow = table.insertRow();
+    // 建立三個新單元格 向表格中插入元素
+    newRow.insertCell().innerHTML = new Date().toLocaleString();
+    newRow.insertCell().innerHTML = nameElement.value;
+    newRow.insertCell().innerHTML = emailElement.value;
+    newRow.insertCell().innerHTML = feedbackElement.value;
+    newRow.insertCell().innerHTML = '<button type="button" class="form-control" onclick="delRow(this)">Delete</button>'
+    nameElement.value = '';
+    emailElement.value = '';
+    feedbackElement.value = '';
+    }
+    function delRow(r) {
+    // 指定i=r(this)的父層+父層
+    var i = r.parentNode.parentNode.rowIndex;
+    // 刪除指定階層
+    document.getElementById("Feedback_table").deleteRow(i);
+    alert("謝謝您的回饋，我們已將資訊刪除!");
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+  List of Talks
+{% endblock %}
+
+
+{% block content %}
+  <div class="mycard" style="overflow-y: auto; max-height: 500px;">
+    <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+            background-color: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #888;
+        }
+    </style>
+    <h1 style="color: aliceblue;">Talks</h1>
+    <ul>
+      {% for x in talks %}
+        <li class="List" style="color: aliceblue;font-size: 20px;" onclick="window.location = 'talk/{{ x.id }}'">{{ x.topic }}</li>
+        <p style="color: cornflowerblue;font-size: 15px;">Summary : {{x.Talk|truncatechars:10}}</p>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
